@@ -98,7 +98,7 @@ export default function Onboarding() {
         <Pressable
           onPress={() => {
             const cleaned = handle.trim().replace(/^@/, "");
-            router.replace({
+            router.push({
               pathname: "/onboarding/scanning",
               params: { handle: cleaned },
             });

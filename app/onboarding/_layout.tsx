@@ -1,11 +1,20 @@
 import { Stack } from 'expo-router';
 
+import { colors } from '@/theme/colors';
+
 export default function OnboardingLayout() {
   return (
-    <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#000' } }}>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: colors.bg },
+        gestureEnabled: true,
+        fullScreenGestureEnabled: true,
+      }}
+    >
       <Stack.Screen name="index" />
-      <Stack.Screen name="scanning" options={{ gestureEnabled: false }} />
-      <Stack.Screen name="insights" options={{ gestureEnabled: false }} />
+      <Stack.Screen name="scanning" />
+      <Stack.Screen name="insights" />
     </Stack>
   );
 }

@@ -85,7 +85,7 @@ export default function Insights() {
 
       <View style={[styles.ctaWrap, { bottom: insets.bottom + 16 }]}>
         <Pressable
-          onPress={() => router.replace("/(tabs)/explore")}
+          onPress={() => router.replace("/(tabs)")}
           style={({ pressed }) => [styles.cta, pressed && styles.ctaPressed]}
         >
           <Text style={styles.ctaLabel}>Show Me My Audience</Text>

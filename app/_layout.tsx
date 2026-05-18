@@ -2,12 +2,15 @@ import { DarkTheme, ThemeProvider, type Theme } from '@react-navigation/native';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import * as SystemUI from 'expo-system-ui';
 import { PaperProvider } from 'react-native-paper';
 import 'react-native-reanimated';
 
 import { queryClient } from '@/lib/query-client';
 import { colors } from '@/theme/colors';
 import { darkTheme } from '@/theme/paper-theme';
+
+SystemUI.setBackgroundColorAsync(colors.bg);
 
 export const unstable_settings = {
   anchor: '(tabs)',
@@ -20,6 +23,9 @@ const navigationTheme: Theme = {
 
 const screenOptions = {
   contentStyle: { backgroundColor: colors.bg },
+  gestureEnabled: true,
+  fullScreenGestureEnabled: true,
+  animation: 'fade',
 } as const;
 
 export default function RootLayout() {
@@ -29,7 +35,7 @@ export default function RootLayout() {
         <ThemeProvider value={navigationTheme}>
           <Stack screenOptions={screenOptions}>
             <Stack.Screen name="onboarding" options={{ headerShown: false }} />
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="(tabs)" options={{ headerShown: false, animation: 'fade' }} />
             <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
           </Stack>
           <StatusBar style="light" />

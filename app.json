@@ -7,13 +7,16 @@
     "icon": "./assets/images/icon.png",
     "scheme": "morpheusmobile",
     "userInterfaceStyle": "dark",
+    "backgroundColor": "#000000",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "tech.holatech.morpheus"
+      "bundleIdentifier": "tech.holatech.morpheus",
+      "backgroundColor": "#000000"
     },
     "android": {
       "package": "tech.holatech.morpheus",
+      "backgroundColor": "#000000",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
