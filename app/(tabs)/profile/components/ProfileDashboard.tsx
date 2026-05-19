@@ -2,13 +2,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 
 import { DashboardShell } from "@/components/dashboard/DashboardShell";
 
-import {
-  merch,
-  profileImages,
-  services,
-  socials,
-  tracks,
-} from "./data";
+import { merch, profileImages, services, socials, tracks } from "./data";
 import {
   MerchCard,
   ProfileHero,

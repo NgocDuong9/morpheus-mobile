@@ -1,8 +1,14 @@
-import { FontAwesome6 } from "@expo/vector-icons";
-import Feather from "@expo/vector-icons/Feather";
 import { LinearGradient } from "expo-linear-gradient";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
+import { DiscoverAssetIcon } from "@/components/dashboard/DiscoverAssetIcon";
 import type {
   EventItem,
   ExclusiveDrop,
@@ -11,30 +17,29 @@ import type {
   ToolItem,
 } from "@/components/dashboard/types";
 
+const heroPickImage = require("@/assets/images/discover/hero-pick.png");
+
 export function HeroPickCard() {
   return (
     <View style={styles.hero}>
-      <LinearGradient
-        colors={["#e4e0cf", "#7b7f73", "#111111"]}
+      <ImageBackground
+        source={heroPickImage}
         style={styles.heroArt}
+        imageStyle={styles.heroArtImage}
       >
-        <View style={styles.orbit} />
-        <View style={styles.disc}>
-          <View style={styles.discCore} />
-        </View>
         <View style={styles.heroBadge}>
-          <FontAwesome6
-            name="wand-magic-sparkles"
-            size={13}
-            color="#fff"
-            iconStyle="solid"
-          />
+          <DiscoverAssetIcon name="sparkles" width={16} height={16} />
           <Text style={styles.heroBadgeText}>Morpheus pick for you</Text>
         </View>
         <View style={styles.playButton}>
-          <Feather name="play" size={16} color="#090909" />
+          <DiscoverAssetIcon
+            name="play"
+            color="#080808"
+            width={12}
+            height={14}
+          />
         </View>
-      </LinearGradient>
+      </ImageBackground>
 
       <View style={styles.heroMeta}>
         <View>
@@ -42,8 +47,18 @@ export function HeroPickCard() {
           <Text style={styles.heroSubtitle}>Yuna Saitō · Ambient · 42 min</Text>
         </View>
         <View style={styles.inlineIcons}>
-          <Feather name="bookmark" size={20} color="rgba(255,255,255,0.56)" />
-          <Feather name="heart" size={20} color="rgba(255,255,255,0.56)" />
+          <DiscoverAssetIcon
+            name="bookmark"
+            width={20}
+            height={20}
+            opacity={0.8}
+          />
+          <DiscoverAssetIcon
+            name="heart"
+            width={20}
+            height={20}
+            opacity={0.8}
+          />
         </View>
       </View>
 
@@ -101,23 +116,31 @@ export function FilterChips({
 
 export function LiveStreamCard({ stream }: { stream: LiveStream }) {
   return (
-    <LinearGradient colors={stream.colors} style={styles.liveCard}>
+    <ImageBackground
+      source={stream.image}
+      style={styles.liveCard}
+      imageStyle={styles.liveCardImage}
+    >
+      <LinearGradient
+        colors={["rgba(8,8,8,0)", "rgba(8,8,8,0.3)", "#080808"]}
+        locations={[0.35, 0.68, 1]}
+        style={StyleSheet.absoluteFill}
+      />
       <View style={styles.liveTop}>
         <View style={styles.livePill}>
           <View style={styles.liveDot} />
           <Text style={styles.livePillText}>LIVE</Text>
         </View>
         <View style={styles.viewCount}>
-          <Feather name="eye" size={12} color="#fff" />
+          <DiscoverAssetIcon name="eye" width={12} height={8} />
           <Text style={styles.viewCountText}>{stream.viewers}</Text>
         </View>
       </View>
-      <View style={styles.stageLight} />
       <View style={styles.liveBottom}>
         <Text style={styles.liveArtist}>{stream.artist}</Text>
         <Text style={styles.liveTitle}>{stream.title}</Text>
       </View>
-    </LinearGradient>
+    </ImageBackground>
   );
 }
 
@@ -155,14 +178,20 @@ export function WavRoomCard() {
 export function ExclusiveDropCard({ drop }: { drop: ExclusiveDrop }) {
   return (
     <View style={styles.dropCard}>
-      <LinearGradient colors={drop.colors} style={styles.dropArt}>
+      <ImageBackground
+        source={drop.image}
+        style={styles.dropArt}
+        imageStyle={styles.dropArtImage}
+      >
         <View style={styles.dropBadge}>
           <Text style={styles.dropBadgeText}>{drop.badge}</Text>
         </View>
         {drop.locked && (
-          <Feather name="lock" size={16} color="#fff" style={styles.lockIcon} />
+          <View style={styles.lockIcon}>
+            <DiscoverAssetIcon name="lock" width={16} height={16} />
+          </View>
         )}
-      </LinearGradient>
+      </ImageBackground>
       <Text style={styles.dropTitle}>{drop.title}</Text>
       <Text style={styles.dropSubtitle}>{drop.subtitle}</Text>
     </View>
@@ -172,10 +201,7 @@ export function ExclusiveDropCard({ drop }: { drop: ExclusiveDrop }) {
 export function EventRow({ event }: { event: EventItem }) {
   return (
     <View style={styles.eventRow}>
-      <LinearGradient
-        colors={["#f8fafc", "#525252"]}
-        style={styles.eventThumb}
-      />
+      <Image source={event.image} style={styles.eventThumb} />
       <View style={styles.eventInfo}>
         <View style={styles.dateRow}>
           <Text style={styles.eventDay}>{event.day}</Text>
@@ -195,13 +221,17 @@ export function EventRow({ event }: { event: EventItem }) {
 export function ProductCard({ product }: { product: ProductDrop }) {
   return (
     <View style={styles.productCard}>
-      <LinearGradient colors={product.colors} style={styles.productArt}>
+      <ImageBackground
+        source={product.image}
+        style={styles.productArt}
+        imageStyle={styles.productArtImage}
+      >
         {product.badge && (
           <View style={styles.productBadge}>
             <Text style={styles.productBadgeText}>{product.badge}</Text>
           </View>
         )}
-      </LinearGradient>
+      </ImageBackground>
       <View style={styles.productBody}>
         <Text style={styles.productTitle}>{product.title}</Text>
         <Text style={styles.productSubtitle}>{product.subtitle}</Text>
@@ -261,29 +291,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  orbit: {
-    position: "absolute",
-    width: 190,
-    height: 190,
-    borderRadius: 95,
-    borderWidth: 2,
-    borderColor: "rgba(0,0,0,0.55)",
-    transform: [{ scaleX: 1.65 }, { rotate: "-18deg" }],
-  },
-  disc: {
-    width: 86,
-    height: 86,
-    borderRadius: 43,
-    backgroundColor: "rgba(255,255,255,0.42)",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  discCore: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: "#232323",
-  },
+  heroArtImage: { resizeMode: "cover" },
   heroBadge: {
     position: "absolute",
     top: 24,
@@ -367,7 +375,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    gap: 8,
+    gap: 4,
   },
   chipText: { color: "#fff", fontSize: 12, lineHeight: 16 },
   chipValue: {
@@ -388,6 +396,7 @@ const styles = StyleSheet.create({
     padding: 16,
     justifyContent: "space-between",
   },
+  liveCardImage: { resizeMode: "cover" },
   liveTop: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -408,14 +417,6 @@ const styles = StyleSheet.create({
   livePillText: { color: "#9aff5b", fontSize: 12, fontWeight: "700" },
   viewCount: { flexDirection: "row", alignItems: "center", gap: 4 },
   viewCountText: { color: "#fff", fontSize: 12, fontWeight: "700" },
-  stageLight: {
-    alignSelf: "center",
-    width: 74,
-    height: 150,
-    borderRadius: 40,
-    backgroundColor: "rgba(255,255,255,0.28)",
-    transform: [{ rotate: "18deg" }],
-  },
   liveBottom: { gap: 8 },
   liveArtist: {
     color: "#fff",
@@ -484,6 +485,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.12)",
     overflow: "hidden",
   },
+  dropArtImage: { resizeMode: "cover" },
   dropBadge: {
     position: "absolute",
     left: 8,
@@ -511,7 +513,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
   },
-  eventThumb: { width: 64, height: 64, borderRadius: 8 },
+  eventThumb: { width: 64, height: 64, borderRadius: 8, resizeMode: "cover" },
   eventInfo: { flex: 1, marginLeft: 16 },
   dateRow: { flexDirection: "row", alignItems: "baseline", gap: 4 },
   eventDay: { color: "#fff", fontSize: 20, lineHeight: 20, fontWeight: "700" },
@@ -535,6 +537,7 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.16)",
   },
   productArt: { height: 264 },
+  productArtImage: { resizeMode: "cover" },
   productBadge: {
     position: "absolute",
     top: 16,

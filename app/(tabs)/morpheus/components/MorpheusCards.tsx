@@ -32,8 +32,18 @@ type PlatformMetric = {
 };
 
 export const summaryMetrics: Metric[] = [
-  { label: "ROYALTIES", value: "$2,840", change: "↑ 18% this week", positive: true },
-  { label: "NEW FANS", value: "1,204", change: "↑ 42% this week", positive: true },
+  {
+    label: "ROYALTIES",
+    value: "$2,840",
+    change: "↑ 18% this week",
+    positive: true,
+  },
+  {
+    label: "NEW FANS",
+    value: "1,204",
+    change: "↑ 42% this week",
+    positive: true,
+  },
   { label: "SAVES", value: "8,420", change: "↑ 12% this week", positive: true },
   { label: "SHARES", value: "340", change: "↓ 5% this week" },
 ];
@@ -110,8 +120,18 @@ export function MorpheusTabs() {
   return (
     <View style={styles.segmented}>
       {["Overview", "Agents", "Activity"].map((item, index) => (
-        <View key={item} style={[styles.segment, index === 0 && styles.segmentActive]}>
-          <Text style={[styles.segmentText, index === 0 && styles.segmentTextActive]}>{item}</Text>
+        <View
+          key={item}
+          style={[styles.segment, index === 0 && styles.segmentActive]}
+        >
+          <Text
+            style={[
+              styles.segmentText,
+              index === 0 && styles.segmentTextActive,
+            ]}
+          >
+            {item}
+          </Text>
         </View>
       ))}
     </View>
@@ -129,9 +149,11 @@ export function StreamsCard() {
       </View>
       <Text style={styles.mutedText}>+67.4K vs last week · WoW growth</Text>
       <View style={styles.sparkline}>
-        {[18, 20, 23, 26, 25, 31, 28, 34, 36, 39, 40, 43, 41, 45, 49].map((height, index) => (
-          <View key={index} style={[styles.sparkBar, { height }]} />
-        ))}
+        {[18, 20, 23, 26, 25, 31, 28, 34, 36, 39, 40, 43, 41, 45, 49].map(
+          (height, index) => (
+            <View key={index} style={[styles.sparkBar, { height }]} />
+          ),
+        )}
       </View>
     </View>
   );
@@ -142,7 +164,11 @@ export function MetricCard({ metric }: { metric: Metric }) {
     <View style={styles.metricCard}>
       <Text style={styles.metricLabel}>{metric.label}</Text>
       <Text style={styles.metricValue}>{metric.value}</Text>
-      <Text style={[styles.metricChange, metric.positive && styles.positiveText]}>{metric.change}</Text>
+      <Text
+        style={[styles.metricChange, metric.positive && styles.positiveText]}
+      >
+        {metric.change}
+      </Text>
     </View>
   );
 }
@@ -152,7 +178,12 @@ export function AgentTaskCard({ task }: { task: AgentTask }) {
     <View style={styles.taskCard}>
       <View style={styles.taskIcon}>
         {task.icon === "megaphone" ? (
-          <FontAwesome6 name="bullhorn" size={16} color="#fff" iconStyle="solid" />
+          <FontAwesome6
+            name="bullhorn"
+            size={16}
+            color="#fff"
+            iconStyle="solid"
+          />
         ) : task.icon === "dollar-sign" ? (
           <Feather name="dollar-sign" size={18} color="#fff" />
         ) : (
@@ -178,7 +209,12 @@ export function TrackRow({ track }: { track: Track }) {
       </View>
       <View style={styles.trackRight}>
         <View style={styles.progressTrack}>
-          <View style={[styles.progressFill, { width: `${Math.round(track.progress * 100)}%` }]} />
+          <View
+            style={[
+              styles.progressFill,
+              { width: `${Math.round(track.progress * 100)}%` },
+            ]}
+          />
         </View>
         <Text style={styles.trackStreams}>{track.streams}</Text>
       </View>
@@ -189,7 +225,15 @@ export function TrackRow({ track }: { track: Track }) {
 export function PlatformCard({ platform }: { platform: PlatformMetric }) {
   return (
     <View style={styles.platformCard}>
-      <View style={[styles.platformIcon, platform.icon === "spotify" && styles.spotify, platform.icon === "youtube" && styles.youtube, platform.icon === "tiktok" && styles.tiktok, platform.icon === "soundcloud" && styles.soundcloud]}>
+      <View
+        style={[
+          styles.platformIcon,
+          platform.icon === "spotify" && styles.spotify,
+          platform.icon === "youtube" && styles.youtube,
+          platform.icon === "tiktok" && styles.tiktok,
+          platform.icon === "soundcloud" && styles.soundcloud,
+        ]}
+      >
         <PlatformIcon type={platform.icon} />
       </View>
       <Text style={styles.platformValue}>{platform.value}</Text>
@@ -200,15 +244,23 @@ export function PlatformCard({ platform }: { platform: PlatformMetric }) {
 
 function PlatformIcon({ type }: { type: PlatformMetric["icon"] }) {
   if (type === "spotify") {
-    return <FontAwesome6 name="spotify" size={18} color="#fff" iconStyle="brand" />;
+    return (
+      <FontAwesome6 name="spotify" size={18} color="#fff" iconStyle="brand" />
+    );
   }
   if (type === "youtube") {
-    return <FontAwesome6 name="youtube" size={18} color="#fff" iconStyle="brand" />;
+    return (
+      <FontAwesome6 name="youtube" size={18} color="#fff" iconStyle="brand" />
+    );
   }
   if (type === "tiktok") {
-    return <FontAwesome6 name="tiktok" size={18} color="#fff" iconStyle="brand" />;
+    return (
+      <FontAwesome6 name="tiktok" size={18} color="#fff" iconStyle="brand" />
+    );
   }
-  return <FontAwesome6 name="soundcloud" size={18} color="#fff" iconStyle="brand" />;
+  return (
+    <FontAwesome6 name="soundcloud" size={18} color="#fff" iconStyle="brand" />
+  );
 }
 
 export function SuggestionCard() {
@@ -217,8 +269,9 @@ export function SuggestionCard() {
       <Text style={styles.quoteMark}>“</Text>
       <Text style={styles.recommended}>RECOMMENDED ACTION</Text>
       <Text style={styles.suggestionCopy}>
-        <Text style={styles.suggestionStrong}>TikTok</Text> is heating up. You should post 3 reels in the
-        next 48 hours with a hook in the first 0-3 seconds. Expected reach{" "}
+        <Text style={styles.suggestionStrong}>TikTok</Text> is heating up. You
+        should post 3 reels in the next 48 hours with a hook in the first 0-3
+        seconds. Expected reach{" "}
         <Text style={styles.suggestionStrong}>+210%</Text>.
       </Text>
       <View style={styles.suggestionActions}>
@@ -246,9 +299,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 4,
   },
-  segment: { flex: 1, borderRadius: 999, alignItems: "center", justifyContent: "center" },
+  segment: {
+    flex: 1,
+    borderRadius: 999,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   segmentActive: { backgroundColor: "rgba(255,255,255,0.08)" },
-  segmentText: { color: "rgba(255,255,255,0.56)", fontSize: 13, lineHeight: 16 },
+  segmentText: {
+    color: "rgba(255,255,255,0.56)",
+    fontSize: 13,
+    lineHeight: 16,
+  },
   segmentTextActive: { color: "#fff" },
   streamCard: {
     marginHorizontal: 16,
@@ -268,14 +330,32 @@ const styles = StyleSheet.create({
     right: -41,
     top: -103,
     backgroundColor: "rgba(154,255,91,0.16)",
+    filter: "blur(53px)",
   },
   cardLabel: { color: "#fff", fontSize: 12, lineHeight: 16, fontWeight: "300" },
   streamValueRow: { flexDirection: "row", alignItems: "baseline", gap: 8 },
-  streamValue: { color: "#fff", fontSize: 32, lineHeight: 36, fontWeight: "800", letterSpacing: 0.64 },
+  streamValue: {
+    color: "#fff",
+    fontSize: 32,
+    lineHeight: 36,
+    fontWeight: "800",
+    letterSpacing: 0.64,
+  },
   positiveText: { color: "#9aff5b" },
   mutedText: { color: "rgba(255,255,255,0.56)", fontSize: 12, lineHeight: 16 },
-  sparkline: { height: 68, flexDirection: "row", alignItems: "flex-end", gap: 4, paddingTop: 8 },
-  sparkBar: { flex: 1, borderTopWidth: 1, borderColor: "#fff", backgroundColor: "rgba(255,255,255,0.08)" },
+  sparkline: {
+    height: 68,
+    flexDirection: "row",
+    alignItems: "flex-end",
+    gap: 4,
+    paddingTop: 8,
+  },
+  sparkBar: {
+    flex: 1,
+    borderTopWidth: 1,
+    borderColor: "#fff",
+    backgroundColor: "rgba(255,255,255,0.08)",
+  },
   metricCard: {
     width: "47.7%",
     borderRadius: 16,
@@ -286,8 +366,18 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   metricLabel: { color: "#9a9a9e", fontSize: 12, lineHeight: 16 },
-  metricValue: { color: "#fff", fontSize: 20, lineHeight: 24, fontWeight: "800", letterSpacing: 0.4 },
-  metricChange: { color: "rgba(255,255,255,0.64)", fontSize: 13, lineHeight: 16 },
+  metricValue: {
+    color: "#fff",
+    fontSize: 20,
+    lineHeight: 24,
+    fontWeight: "800",
+    letterSpacing: 0.4,
+  },
+  metricChange: {
+    color: "rgba(255,255,255,0.64)",
+    fontSize: 13,
+    lineHeight: 16,
+  },
   taskCard: {
     borderRadius: 16,
     borderWidth: 1,
@@ -308,17 +398,44 @@ const styles = StyleSheet.create({
   },
   taskText: { flex: 1, gap: 8 },
   taskBody: { color: "#fff", fontSize: 14, lineHeight: 20 },
-  taskMeta: { color: "rgba(255,255,255,0.48)", fontSize: 12, lineHeight: 16, textAlign: "right" },
+  taskMeta: {
+    color: "rgba(255,255,255,0.48)",
+    fontSize: 12,
+    lineHeight: 16,
+    textAlign: "right",
+  },
   trackRow: { flexDirection: "row", alignItems: "center", gap: 10 },
   trackRank: { color: "#9aff5b", width: 12, fontSize: 13, lineHeight: 16 },
   trackArt: { width: 40, height: 40, borderRadius: 8 },
   trackInfo: { flex: 1 },
   trackTitle: { color: "#fff", fontSize: 14, lineHeight: 20 },
-  trackPlatforms: { color: "rgba(255,255,255,0.64)", fontSize: 12, lineHeight: 16 },
-  trackRight: { width: 78, flexDirection: "row", alignItems: "center", gap: 10, justifyContent: "flex-end" },
-  progressTrack: { width: 44, height: 3, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.18)", overflow: "hidden" },
+  trackPlatforms: {
+    color: "rgba(255,255,255,0.64)",
+    fontSize: 12,
+    lineHeight: 16,
+  },
+  trackRight: {
+    width: 78,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    justifyContent: "flex-end",
+  },
+  progressTrack: {
+    width: 44,
+    height: 3,
+    borderRadius: 2,
+    backgroundColor: "rgba(255,255,255,0.18)",
+    overflow: "hidden",
+  },
   progressFill: { height: "100%", borderRadius: 2, backgroundColor: "#fff" },
-  trackStreams: { color: "#fff", fontSize: 12, lineHeight: 16, minWidth: 24, textAlign: "right" },
+  trackStreams: {
+    color: "#fff",
+    fontSize: 12,
+    lineHeight: 16,
+    minWidth: 24,
+    textAlign: "right",
+  },
   platformCard: {
     flex: 1,
     borderRadius: 16,
@@ -329,12 +446,23 @@ const styles = StyleSheet.create({
     paddingVertical: 13,
     gap: 8,
   },
-  platformIcon: { width: 32, height: 32, borderRadius: 16, alignItems: "center", justifyContent: "center" },
+  platformIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   spotify: { backgroundColor: "#1DB954" },
   youtube: { backgroundColor: "#ff0000" },
   tiktok: { backgroundColor: "#020617" },
   soundcloud: { backgroundColor: "#ff5500" },
-  platformValue: { color: "#fff", fontSize: 16, lineHeight: 20, fontWeight: "800" },
+  platformValue: {
+    color: "#fff",
+    fontSize: 16,
+    lineHeight: 20,
+    fontWeight: "800",
+  },
   platformGrowth: { color: "#9aff5b", fontSize: 12, lineHeight: 16 },
   suggestionCard: {
     marginHorizontal: 16,
@@ -347,11 +475,27 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   quoteMark: { color: "#ffc01f", fontSize: 22, lineHeight: 20 },
-  recommended: { color: "#ffc01f", fontSize: 14, lineHeight: 20, fontWeight: "900" },
-  suggestionCopy: { color: "rgba(255,255,255,0.72)", fontSize: 14, lineHeight: 20 },
+  recommended: {
+    color: "#ffc01f",
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: "900",
+  },
+  suggestionCopy: {
+    color: "rgba(255,255,255,0.72)",
+    fontSize: 14,
+    lineHeight: 20,
+  },
   suggestionStrong: { color: "#fff", fontWeight: "700" },
   suggestionActions: { flexDirection: "row", gap: 12 },
-  primaryButton: { flex: 1, height: 40, borderRadius: 999, backgroundColor: "#fff", alignItems: "center", justifyContent: "center" },
+  primaryButton: {
+    flex: 1,
+    height: 40,
+    borderRadius: 999,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   primaryButtonText: { color: "#171a1f", fontSize: 12, fontWeight: "800" },
   secondaryButton: {
     height: 40,

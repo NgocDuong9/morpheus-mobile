@@ -57,7 +57,12 @@ export function SocialCard({ social }: { social: (typeof socials)[number] }) {
   return (
     <View style={styles.socialCard}>
       <View
-        style={[styles.socialGlow, { backgroundColor: `${social.color}22` }]}
+        style={[
+          styles.socialGlow,
+          {
+            backgroundColor: "rgba(80, 80, 90, 0.5)",
+          },
+        ]}
       />
       <View style={[styles.socialIcon, { backgroundColor: social.color }]}>
         <FontAwesome6

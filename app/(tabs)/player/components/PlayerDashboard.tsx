@@ -244,12 +244,14 @@ export function PlayerDashboard() {
         video={activeVideo}
       />
 
+      <PlayerTopTabs
+        activeIndex={activeTabIndex}
+        tabs={playerTabs}
+        onSelect={selectTab}
+        topInset={insets.top}
+      />
+
       <SafeAreaView style={styles.overlay} edges={["top"]}>
-        <PlayerTopTabs
-          activeIndex={activeTabIndex}
-          tabs={playerTabs}
-          onSelect={selectTab}
-        />
         <View style={styles.feedHint}>
           <Text style={styles.feedHintText}>{activeTab}</Text>
         </View>

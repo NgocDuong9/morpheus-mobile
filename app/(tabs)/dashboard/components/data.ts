@@ -21,18 +21,21 @@ export const liveStreams: LiveStream[] = [
     title: 'Studio session · Making "Lull"',
     viewers: "2.1K",
     colors: ["#ff7b3d", "#202020", "#090909"],
+    image: require("@/assets/images/discover/live-kaito.png"),
   },
   {
     artist: "RAVN",
     title: "Live · EP rolled out",
     viewers: "1.8K",
     colors: ["#12d6ff", "#111827", "#030712"],
+    image: require("@/assets/images/discover/live-ravn.png"),
   },
   {
     artist: "MIRA",
     title: "Ambient room · Late mix",
     viewers: "912",
     colors: ["#c084fc", "#1f2937", "#080808"],
+    image: require("@/assets/images/discover/live-mira.png"),
   },
 ];
 
@@ -43,6 +46,7 @@ export const exclusiveDrops: ExclusiveDrop[] = [
     badge: "EARLY · 3D",
     locked: true,
     colors: ["#6ee7b7", "#0f172a"],
+    image: require("@/assets/images/discover/exclusive-prerelease.png"),
   },
   {
     title: "Lyric-video stems",
@@ -50,6 +54,7 @@ export const exclusiveDrops: ExclusiveDrop[] = [
     badge: "SIGNED",
     locked: true,
     colors: ["#38bdf8", "#111827"],
+    image: require("@/assets/images/discover/exclusive-lyric-video.png"),
   },
   {
     title: "Archive mix",
@@ -57,6 +62,7 @@ export const exclusiveDrops: ExclusiveDrop[] = [
     badge: "VAULT",
     locked: false,
     colors: ["#f472b6", "#171717"],
+    image: require("@/assets/images/discover/exclusive-archive.png"),
   },
 ];
 
@@ -68,6 +74,7 @@ export const nearbyEvents: EventItem[] = [
     place: "The Observatory · D2",
     price: "$24",
     note: "2 left",
+    image: require("@/assets/images/discover/event-yuna.png"),
   },
   {
     day: "02",
@@ -76,6 +83,7 @@ export const nearbyEvents: EventItem[] = [
     place: "Arcan Stage · BKK",
     price: "$32",
     note: "Early bird",
+    image: require("@/assets/images/discover/event-ravn.png"),
   },
   {
     day: "14",
@@ -84,6 +92,7 @@ export const nearbyEvents: EventItem[] = [
     place: "Soma Art Café · D1",
     price: "$18",
     note: "Available",
+    image: require("@/assets/images/discover/event-kaito.png"),
   },
 ];
 
@@ -94,12 +103,14 @@ export const productDrops: ProductDrop[] = [
     price: "$38",
     badge: "Just in",
     colors: ["#f5f5f4", "#737373"],
+    image: require("@/assets/images/discover/product-tee.png"),
   },
   {
     title: "vol. II vinyl",
     subtitle: "Lorem ipsun",
     price: "$48",
     colors: ["#d4d4d8", "#18181b"],
+    image: require("@/assets/images/discover/product-vinyl.png"),
   },
   {
     title: "Drift cassette",
@@ -107,6 +118,14 @@ export const productDrops: ProductDrop[] = [
     price: "$22",
     badge: "SIGNED",
     colors: ["#a7f3d0", "#0f172a"],
+    image: require("@/assets/images/discover/product-cassette.png"),
+  },
+  {
+    title: "Tour hoodie",
+    subtitle: "3 sizes",
+    price: "$68",
+    colors: ["#d4d4d8", "#18181b"],
+    image: require("@/assets/images/discover/product-hoodie.png"),
   },
 ];
 

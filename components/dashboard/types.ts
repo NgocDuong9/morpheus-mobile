@@ -1,4 +1,5 @@
 import type Feather from "@expo/vector-icons/Feather";
+import type { ImageSourcePropType } from "react-native";
 
 export type GradientColors = readonly [string, string, ...string[]];
 
@@ -26,6 +27,7 @@ export type LiveStream = {
   title: string;
   viewers: string;
   colors: GradientColors;
+  image: ImageSourcePropType;
 };
 
 export type ExclusiveDrop = {
@@ -34,6 +36,7 @@ export type ExclusiveDrop = {
   badge: string;
   locked: boolean;
   colors: GradientColors;
+  image: ImageSourcePropType;
 };
 
 export type EventItem = {
@@ -43,6 +46,7 @@ export type EventItem = {
   place: string;
   price: string;
   note: string;
+  image: ImageSourcePropType;
 };
 
 export type ProductDrop = {
@@ -51,6 +55,7 @@ export type ProductDrop = {
   price: string;
   badge?: string;
   colors: GradientColors;
+  image: ImageSourcePropType;
 };
 
 export type ToolItem = {

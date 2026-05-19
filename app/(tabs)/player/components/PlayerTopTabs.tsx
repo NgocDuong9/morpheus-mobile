@@ -7,6 +7,7 @@ type PlayerTopTabsProps = {
   activeIndex: number;
   tabs: PlayerTab[];
   onSelect: (index: number) => void;
+  topInset?: number;
 };
 
 export function PlayerTopTabs({
@@ -15,7 +16,7 @@ export function PlayerTopTabs({
   onSelect,
 }: PlayerTopTabsProps) {
   return (
-    <View style={styles.topBar}>
+    <View style={[styles.topBar, { paddingTop: 40 }]}>
       <View style={styles.topSpacer} />
       <View style={styles.tabs}>
         {tabs.map((tab, index) => (
@@ -47,7 +48,10 @@ export function PlayerTopTabs({
 
 const styles = StyleSheet.create({
   topBar: {
-    height: 40,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
     backgroundColor: "#080808",
     borderBottomWidth: 1,
     borderBottomColor: "rgba(255,255,255,0.04)",
@@ -56,6 +60,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 0,
     gap: 16,
+    zIndex: 10,
   },
   topSpacer: { width: 24 },
   tabs: {
