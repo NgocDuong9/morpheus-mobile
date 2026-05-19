@@ -1,6 +1,6 @@
-import { Stack } from 'expo-router';
+import { Stack } from "expo-router";
 
-import { colors } from '@/theme/colors';
+import { colors } from "@/theme/colors";
 
 export default function OnboardingLayout() {
   return (
@@ -12,7 +12,9 @@ export default function OnboardingLayout() {
         fullScreenGestureEnabled: true,
       }}
     >
+      <Stack.Screen name="logo" />
       <Stack.Screen name="index" />
+      <Stack.Screen name="connect" />
       <Stack.Screen name="scanning" />
       <Stack.Screen name="insights" />
     </Stack>
