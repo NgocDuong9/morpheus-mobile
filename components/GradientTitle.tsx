@@ -7,6 +7,8 @@ import Svg, {
   Text as SvgText,
 } from "react-native-svg";
 
+import { fontFamily } from "@/theme/typography";
+
 type GradientTitleProps = {
   title: string;
   width?: number;
@@ -48,10 +50,9 @@ export function GradientTitle({
         x={0}
         y={19}
         fill={`url(#${gradientId})`}
-        fontFamily="SF Pro"
+        fontFamily={fontFamily.medium}
         fontSize={DEFAULT_FONT_SIZE}
         fontStyle="normal"
-        fontWeight="540"
         letterSpacing={DEFAULT_LETTER_SPACING}
       >
         {title}

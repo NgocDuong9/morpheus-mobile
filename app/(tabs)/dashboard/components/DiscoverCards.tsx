@@ -16,6 +16,7 @@ import type {
   ProductDrop,
   ToolItem,
 } from "@/components/dashboard/types";
+import { fontFamily } from "@/theme/typography";
 
 const heroPickImage = require("@/assets/images/discover/hero-pick.png");
 
@@ -351,17 +352,15 @@ const styles = StyleSheet.create({
   quoteMark: { color: "#ffab00", fontSize: 20, lineHeight: 20 },
   quoteText: {
     color: "rgba(255,255,255,0.72)",
-    fontFamily: "SF Pro",
+    fontFamily: fontFamily.ultralight,
     fontSize: 14,
-    fontWeight: "100",
     lineHeight: 20,
     marginTop: 8,
   },
   quoteStrong: {
     color: "#fff",
-    fontFamily: "SF Pro",
+    fontFamily: fontFamily.bold,
     fontSize: 14,
-    fontWeight: "700",
     lineHeight: 20,
   },
   filtersBlock: { marginTop: 32, paddingHorizontal: 16, gap: 8 },
