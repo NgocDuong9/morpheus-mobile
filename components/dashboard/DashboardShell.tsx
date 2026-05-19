@@ -1,8 +1,8 @@
 import Feather from "@expo/vector-icons/Feather";
-import { router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 import type { ReactNode } from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Keyboard,
   Modal,
@@ -24,6 +24,8 @@ import { GradientTitle } from "@/components/GradientTitle";
 
 import { FontAwesome6, Octicons } from "@expo/vector-icons";
 import { DashboardIcon, MessageCircleMoreIcon } from "./DashboardIcon";
+import { useDashboardScroll } from "./DashboardScrollContext";
+import { DashboardZoomScene } from "./DashboardZoomScene";
 import { dashboardTabs } from "./data";
 import type { DashboardTabKey } from "./types";
 
@@ -34,18 +36,30 @@ type DashboardShellProps = {
 
 export function DashboardShell({ activeTab, children }: DashboardShellProps) {
   const insets = useSafeAreaInsets();
+  const scrollRef = useRef<ScrollView>(null);
+  const scrollCtx = useDashboardScroll();
+
+  useEffect(() => {
+    if (!scrollCtx) return;
+    return scrollCtx.register(activeTab, (animated) => {
+      scrollRef.current?.scrollTo({ y: 0, animated });
+    });
+  }, [scrollCtx, activeTab]);
 
   return (
     <SafeAreaView style={shellStyles.safe} edges={["top"]}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
-          shellStyles.scroll,
-          { paddingBottom: insets.bottom + 140 },
-        ]}
-      >
-        {children}
-      </ScrollView>
+      <DashboardZoomScene>
+        <ScrollView
+          ref={scrollRef}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={[
+            shellStyles.scroll,
+            { paddingBottom: insets.bottom + 140 },
+          ]}
+        >
+          {children}
+        </ScrollView>
+      </DashboardZoomScene>
 
       <DashboardBottomDock activeTab={activeTab} bottomInset={insets.bottom} />
     </SafeAreaView>
@@ -62,6 +76,7 @@ export function DashboardBottomDock({
   showMorpheusButton?: boolean;
 }) {
   const [isMorpheusChatOpen, setMorpheusChatOpen] = useState(false);
+  const scrollCtx = useDashboardScroll();
 
   return (
     <>
@@ -85,7 +100,14 @@ export function DashboardBottomDock({
               <Pressable
                 key={item.key}
                 style={shellStyles.navItem}
-                onPress={() => router.push(item.href)}
+                onPress={() => {
+                  if (isActive) {
+                    scrollCtx?.scrollToTop(item.key, true);
+                    return;
+                  }
+                  scrollCtx?.scrollToTop(item.key, false);
+                  router.push(item.href);
+                }}
               >
                 <DashboardIcon
                   name={item.icon}
@@ -281,7 +303,9 @@ function MorpheusChatModal({
                 <View style={shellStyles.summaryTop}>
                   <Text style={shellStyles.summaryNumber}>14</Text>
                   <View style={shellStyles.summaryRight}>
-                    <Text style={shellStyles.summaryMuted}>Tasks completed</Text>
+                    <Text style={shellStyles.summaryMuted}>
+                      Tasks completed
+                    </Text>
                     <Text style={shellStyles.summaryToday}>Today</Text>
                   </View>
                 </View>

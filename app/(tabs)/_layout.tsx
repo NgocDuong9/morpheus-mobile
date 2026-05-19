@@ -1,6 +1,7 @@
 import { Tabs } from "expo-router";
 import React from "react";
 
+import { DashboardScrollProvider } from "@/components/dashboard/DashboardScrollContext";
 import { HapticTab } from "@/components/haptic-tab";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { Colors } from "@/constants/theme";
@@ -11,15 +12,17 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarStyle: { display: "none" },
-        sceneStyle: { backgroundColor: colors.bg },
-      }}
-    >
+    <DashboardScrollProvider>
+      <Tabs
+        screenOptions={{
+          tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+          headerShown: false,
+          tabBarButton: HapticTab,
+          tabBarStyle: { display: "none" },
+          sceneStyle: { backgroundColor: colors.bg },
+          animation: "none",
+        }}
+      >
       <Tabs.Screen
         name="index"
         options={{ href: null }}
@@ -69,6 +72,7 @@ export default function TabLayout() {
           ),
         }}
       />
-    </Tabs>
+      </Tabs>
+    </DashboardScrollProvider>
   );
 }
